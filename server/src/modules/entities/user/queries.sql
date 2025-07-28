@@ -5,9 +5,9 @@ WHERE "id" = :id;
 
 /*
   @name insertUser
-  @param values -> ((id, firstName, lastName, username, isBot, stravaLink)...)
+  @param values -> ((id, firstName, lastName, username, isBot, telegramPubLink)...)
 */
-INSERT INTO "User" ("id", "firstName", "lastName", "username", "isBot", "stravaLink")
+INSERT INTO "User" ("id", "firstName", "lastName", "username", "isBot", "telegramPubLink")
 VALUES :values
 RETURNING *;
 
@@ -20,6 +20,6 @@ SET
   "lastName" = :lastName,
   "username" = :username,
   "isBot" = :isBot,
-  "stravaLink" = :stravaLink
+  "telegramPubLink" = :telegramPubLink
 WHERE "id" = :id
 RETURNING *;

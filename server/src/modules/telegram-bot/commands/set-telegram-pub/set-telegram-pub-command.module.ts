@@ -4,11 +4,11 @@ import { TemplatesModule } from 'src/modules/telegram-bot/templates/templates.mo
 import { MiddlewaresModule } from 'src/modules/telegram-bot/middlewares/middlewares.module';
 import { EntitiesModule } from 'src/modules/entities/entities.module';
 
-import { SetStravaCommandService } from './set-strava-command.service';
+import { SetTelegramPubCommandService } from './set-telegram-pub-command.service';
 
 @Module({
   imports: [TemplatesModule, MiddlewaresModule, EntitiesModule],
-  providers: [SetStravaCommandService],
-  exports: [SetStravaCommandService],
+  providers: [SetTelegramPubCommandService],
+  exports: [SetTelegramPubCommandService],
 })
-export class SetStravaCommandModule {}
+export class SetTelegramPubCommandModule {}

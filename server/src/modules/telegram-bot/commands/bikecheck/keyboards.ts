@@ -62,8 +62,8 @@ export function getPrivateBikecheckKeyboard(
       ],
       [
         getCommandButton(
-          'Удалить страву',
-          CALLBACK_QUERY_COMMANDS.DELETE_STRAVA,
+          'Удалить паблик',
+          CALLBACK_QUERY_COMMANDS.DELETE_TELEGRAM_PUB,
           {
             bikecheckId: bikecheck.id,
           },

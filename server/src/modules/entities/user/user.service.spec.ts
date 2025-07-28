@@ -36,7 +36,7 @@ describe('Test UserService', () => {
     expect(user?.firstName).toBe('Billy');
     expect(user?.lastName).toBe('Herrington');
     expect(user?.isBot).toBe(false);
-    expect(user?.stravaLink).toBe(null);
+    expect(user?.telegramPubLink).toBe(null);
     expect(user?.username).toBe('billy');
 
     user = await userService.findById(connection, '100500');
@@ -49,7 +49,7 @@ describe('Test UserService', () => {
     expect(user?.firstName).toBe('Billy');
     expect(user?.lastName).toBe('Herrington');
     expect(user?.isBot).toBe(false);
-    expect(user?.stravaLink).toBe(null);
+    expect(user?.telegramPubLink).toBe(null);
     expect(user?.username).toBe('billy');
 
     try {
@@ -67,7 +67,7 @@ describe('Test UserService', () => {
       firstName: 'Mark',
       lastName: 'Wolff',
       isBot: false,
-      stravaLink: undefined,
+      telegramPubLink: undefined,
       username: 'mwolff',
     });
 
@@ -78,7 +78,7 @@ describe('Test UserService', () => {
     expect(check?.firstName).toBe('Mark');
     expect(check?.lastName).toBe('Wolff');
     expect(check?.isBot).toBe(false);
-    expect(check?.stravaLink).toBe(null);
+    expect(check?.telegramPubLink).toBe(null);
     expect(check?.username).toBe('mwolff');
   });
 
@@ -92,7 +92,7 @@ describe('Test UserService', () => {
     expect(check?.firstName).toBe('Billy');
     expect(check?.lastName).toBe('Herrington');
     expect(check?.isBot).toBe(false);
-    expect(check?.stravaLink).toBe(null);
+    expect(check?.telegramPubLink).toBe(null);
     expect(check?.username).toBe('aniki');
   });
 
@@ -102,7 +102,7 @@ describe('Test UserService', () => {
       firstName: 'Mark',
       lastName: 'Wolff',
       isBot: false,
-      stravaLink: undefined,
+      telegramPubLink: undefined,
       username: 'mwolff',
     });
 
@@ -113,7 +113,7 @@ describe('Test UserService', () => {
     expect(check?.firstName).toBe('Mark');
     expect(check?.lastName).toBe('Wolff');
     expect(check?.isBot).toBe(false);
-    expect(check?.stravaLink).toBe(null);
+    expect(check?.telegramPubLink).toBe(null);
     expect(check?.username).toBe('mwolff');
   });
 
@@ -128,7 +128,7 @@ describe('Test UserService', () => {
     expect(check?.firstName).toBe('Billy');
     expect(check?.lastName).toBe('Herrington');
     expect(check?.isBot).toBe(false);
-    expect(check?.stravaLink).toBe(null);
+    expect(check?.telegramPubLink).toBe(null);
     expect(check?.username).toBe('aniki');
   });
 });

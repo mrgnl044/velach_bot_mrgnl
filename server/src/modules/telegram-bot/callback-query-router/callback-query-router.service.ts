@@ -88,9 +88,9 @@ export class CallbackQueryRouterService {
         this.bikecheckCommandService.getCallbackQueryMiddleware(
           CALLBACK_QUERY_COMMANDS.DELETE_BIKECHECK,
         ),
-      [CALLBACK_QUERY_COMMANDS.DELETE_STRAVA]:
+      [CALLBACK_QUERY_COMMANDS.DELETE_TELEGRAM_PUB]:
         this.bikecheckCommandService.getCallbackQueryMiddleware(
-          CALLBACK_QUERY_COMMANDS.DELETE_STRAVA,
+          CALLBACK_QUERY_COMMANDS.DELETE_TELEGRAM_PUB,
         ),
       [CALLBACK_QUERY_COMMANDS.TOGGLE_ON_SALE]:
         this.bikecheckCommandService.getCallbackQueryMiddleware(

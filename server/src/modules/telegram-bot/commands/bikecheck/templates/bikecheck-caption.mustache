@@ -6,12 +6,12 @@ _Байкчек {{bikecheckOrder}} из {{totalBikechecks}}_
 {{/totalBikechecks}}
 Нравится: _{{likes}}_
 Не нравится: _{{dislikes}}_
-{{#stravaLink}}
-[Страва]({{{stravaLink}}})
-{{/stravaLink}}
-{{^stravaLink}}
-_Страву не показывал_
-{{/stravaLink}}
+{{#telegramPubLink}}
+[{{telegramPubName}}]({{{telegramPubLink}}})
+{{/telegramPubLink}}
+{{^telegramPubLink}}
+_Паблик не показывал_
+{{/telegramPubLink}}
 {{#onSale}}
 *Кстати, этот байк продается\!*
 {{/onSale}}

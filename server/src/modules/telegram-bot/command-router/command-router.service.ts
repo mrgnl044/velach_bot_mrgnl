@@ -11,7 +11,7 @@ import { HelpCommandService } from 'src/modules/telegram-bot/commands/help/help-
 import { BikecheckCommandService } from 'src/modules/telegram-bot/commands/bikecheck/bikecheck-command.service';
 import { CheckbikeCommandService } from 'src/modules/telegram-bot/commands/checkbike/checkbike-command.service';
 import { DeletedCommandService } from 'src/modules/telegram-bot/commands/deleted/deleted-command.service';
-import { SetStravaCommandService } from 'src/modules/telegram-bot/commands/set-strava/set-strava-command.service';
+import { SetTelegramPubCommandService } from 'src/modules/telegram-bot/commands/set-telegram-pub/set-telegram-pub-command.service';
 import { StartCommandService } from 'src/modules/telegram-bot/commands/start/start-command.service';
 import { OnSaleCommandService } from 'src/modules/telegram-bot/commands/on-sale/on-sale-command.service';
 import { TopCommandService } from 'src/modules/telegram-bot/commands/top/top-command.service';
@@ -36,7 +36,7 @@ export class CommandRouterService {
   private readonly bikecheckCommandService: BikecheckCommandService;
   private readonly checkbikeCommandService: CheckbikeCommandService;
   private readonly deletedCommandService: DeletedCommandService;
-  private readonly setStravaCommandService: SetStravaCommandService;
+  private readonly setTelegramPubCommandService: SetTelegramPubCommandService;
   private readonly startCommandService: StartCommandService;
   private readonly onSaleCommandService: OnSaleCommandService;
   private readonly topCommandService: TopCommandService;
@@ -48,7 +48,7 @@ export class CommandRouterService {
     bikecheckCommandService: BikecheckCommandService,
     checkbikeCommandService: CheckbikeCommandService,
     deletedCommandService: DeletedCommandService,
-    setStravaCommandService: SetStravaCommandService,
+    setTelegramPubCommandService: SetTelegramPubCommandService,
     startCommandService: StartCommandService,
     onSaleCommandService: OnSaleCommandService,
     topCommandService: TopCommandService,
@@ -59,7 +59,7 @@ export class CommandRouterService {
     this.bikecheckCommandService = bikecheckCommandService;
     this.checkbikeCommandService = checkbikeCommandService;
     this.deletedCommandService = deletedCommandService;
-    this.setStravaCommandService = setStravaCommandService;
+    this.setTelegramPubCommandService = setTelegramPubCommandService;
     this.startCommandService = startCommandService;
     this.onSaleCommandService = onSaleCommandService;
     this.topCommandService = topCommandService;
@@ -91,7 +91,7 @@ export class CommandRouterService {
       [COMMANDS.BIKECHECK]: this.bikecheckCommandService.getMessageMiddleware(),
       [COMMANDS.CHECKBIKE]: this.checkbikeCommandService.getMessageMiddleware(),
       [COMMANDS.DELETED]: this.deletedCommandService.getMessageMiddleware(),
-      [COMMANDS.SET_STRAVA]: this.setStravaCommandService.getMiddleware(),
+      [COMMANDS.SET_TELEGRAM_PUB]: this.setTelegramPubCommandService.getMiddleware(),
       [COMMANDS.START]: this.startCommandService.getMessageMiddleware(),
       [COMMANDS.ON_SALE]: this.onSaleCommandService.getMessageMiddleware(),
       [COMMANDS.TOP]: this.topCommandService.getMessageMiddleware(),

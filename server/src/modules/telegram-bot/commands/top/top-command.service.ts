@@ -17,6 +17,7 @@ import { TemplatesService } from 'src/modules/telegram-bot/templates/templates.s
 import { DbMiddlewareService } from 'src/modules/telegram-bot/middlewares/db-middleware.service';
 import { PreliminaryDataSaveService } from 'src/modules/telegram-bot/middlewares/preliminary-data-save-middleware.service';
 import { composeMiddlewares } from 'src/common/utils/telegram-middlewares';
+import { extractTelegramPubName } from 'src/common/utils/misc';
 import { FeatureAnalyticsMiddlewareService } from 'src/modules/telegram-bot/middlewares/feature-analytics-middleware.service';
 import { MessageAgeMiddlewareService } from 'src/modules/telegram-bot/middlewares/message-age-middleware.service';
 
@@ -72,7 +73,15 @@ export class TopCommandService {
 
     const caption = await this.templatesService.renderTemplate(
       join(__dirname, 'templates', 'top-caption.mustache'),
-      { user, position: 1, onSale: bikecheck.onSale, likes: topData[0].likes },
+      { 
+        user: {
+          ...user,
+          telegramPubName: extractTelegramPubName(user.telegramPubLink)
+        }, 
+        position: 1, 
+        onSale: bikecheck.onSale, 
+        likes: topData[0].likes 
+      },
     );
 
     await ctx.telegram.sendPhoto(message.chat.id, bikecheck.telegramImageId, {
@@ -115,7 +124,10 @@ export class TopCommandService {
     const caption = await this.templatesService.renderTemplate(
       join(__dirname, 'templates', 'top-caption.mustache'),
       {
-        user,
+        user: {
+          ...user,
+          telegramPubName: extractTelegramPubName(user.telegramPubLink)
+        },
         position: data.position,
         onSale: bikecheck.onSale,
         likes:

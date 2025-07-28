@@ -4,7 +4,7 @@ export const COMMANDS = {
   BIKECHECK: 'bikecheck',
   CHECKBIKE: 'checkbike',
   DELETED: 'deleted',
-  SET_STRAVA: 'setstrava',
+  SET_TELEGRAM_PUB: 'settelegrampub',
   ON_SALE: 'onsale',
   TOP: 'top',
   MY_LIKES: 'mylikes',
@@ -31,5 +31,5 @@ export const CALLBACK_QUERY_COMMANDS = {
   SHOW_ON_SALE_BIKECHECK: '13',
   BUMP_ON_SALE_BIKECHECK: '14',
   SAGE_ON_SALE_BIKECHECK: '15',
-  DELETE_STRAVA: '20',
+  DELETE_TELEGRAM_PUB: '20',
 };

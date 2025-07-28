@@ -4,7 +4,7 @@ import { CommandRouterService } from 'src/modules/telegram-bot/command-router/co
 import { HelpCommandModule } from 'src/modules/telegram-bot/commands/help/help-command.module';
 import { BikecheckCommandModule } from 'src/modules/telegram-bot/commands/bikecheck/bikecheck-command.module';
 import { CheckbikeCommandModule } from 'src/modules/telegram-bot/commands/checkbike/checkbike-command.module';
-import { SetStravaCommandModule } from 'src/modules/telegram-bot/commands/set-strava/set-strava-command.module';
+import { SetTelegramPubCommandModule } from 'src/modules/telegram-bot/commands/set-telegram-pub/set-telegram-pub-command.module';
 import { DeletedCommandModule } from 'src/modules/telegram-bot/commands/deleted/deleted-command.module';
 import { StartCommandModule } from 'src/modules/telegram-bot/commands/start/start-command.module';
 import { OnSaleCommandModule } from 'src/modules/telegram-bot/commands/on-sale/on-sale-command.module';
@@ -18,7 +18,7 @@ import { GetAdminPasscodeModule } from 'src/modules/telegram-bot/commands/get-ad
     DeletedCommandModule,
     HelpCommandModule,
     CheckbikeCommandModule,
-    SetStravaCommandModule,
+    SetTelegramPubCommandModule,
     StartCommandModule,
     OnSaleCommandModule,
     TopCommandModule,

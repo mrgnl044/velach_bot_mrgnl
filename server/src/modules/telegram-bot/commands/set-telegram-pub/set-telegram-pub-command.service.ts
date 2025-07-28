@@ -19,10 +19,10 @@ import { TemplatesService } from 'src/modules/telegram-bot/templates/templates.s
 import { FeatureAnalyticsMiddlewareService } from 'src/modules/telegram-bot/middlewares/feature-analytics-middleware.service';
 import { MessageAgeMiddlewareService } from 'src/modules/telegram-bot/middlewares/message-age-middleware.service';
 
-const stravaLinkRegexp = /^(https:\/\/)?(www.)?strava.com\/athletes\/[\w-]+$/;
+const telegramPubLinkRegexp = /^(https:\/\/)?(t\.me\/|telegram\.me\/)[a-zA-Z0-9_]{5,}$/;
 
 @Injectable()
-export class SetStravaCommandService {
+export class SetTelegramPubCommandService {
   constructor(
     private userService: UserService,
     private dbMiddlewareService: DbMiddlewareService,
@@ -62,7 +62,7 @@ export class SetStravaCommandService {
       link = `https://${link}`;
     }
 
-    if (!stravaLinkRegexp.test(link)) {
+    if (!telegramPubLinkRegexp.test(link)) {
       const text = await this.templatesService.renderTemplate(
         join(__dirname, 'templates', 'invalid-link.mustache'),
         {},
@@ -106,7 +106,7 @@ export class SetStravaCommandService {
       replyToSender.id.toString(),
     );
 
-    user.stravaLink = link;
+    user.telegramPubLink = link;
 
     await this.userService.updateUser(client, user);
 

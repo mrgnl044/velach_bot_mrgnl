@@ -8,7 +8,7 @@ export interface IUserConstructorParams {
   id: string;
   isBot: Optional<boolean>;
   lastName: Optional<string>;
-  stravaLink: Optional<string>;
+  telegramPubLink: Optional<string>;
   username: Optional<string>;
 }
 
@@ -17,7 +17,7 @@ export interface IUserTableRow {
   id: string;
   isBot: boolean | null;
   lastName: string | null;
-  stravaLink: string | null;
+  telegramPubLink: string | null;
   username: string | null;
 }
 
@@ -26,7 +26,7 @@ export class User extends BaseEntity {
   id: string;
   isBot: Optional<boolean>;
   lastName: Optional<string>;
-  stravaLink: Optional<string>;
+  telegramPubLink: Optional<string>;
   username: Optional<string>;
 
   static fromTableRow(row: IUserTableRow): User {
@@ -40,7 +40,7 @@ export class User extends BaseEntity {
       lastName: telegramUser.last_name,
       username: telegramUser.username,
       isBot: telegramUser.is_bot,
-      stravaLink: undefined,
+      telegramPubLink: undefined,
     });
   }
 
@@ -52,7 +52,7 @@ export class User extends BaseEntity {
     this.lastName = params.lastName;
     this.username = params.username;
     this.isBot = params.isBot;
-    this.stravaLink = params.stravaLink;
+    this.telegramPubLink = params.telegramPubLink;
   }
 
   updateFromTelegramUser(tgUser: TelegramUser): void {

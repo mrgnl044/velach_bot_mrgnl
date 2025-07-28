@@ -19,7 +19,7 @@ import {
   getContextMessageOrFail,
   getMessageReplyTo,
 } from 'src/common/utils/telegram-context';
-import { getNextIndex, getPreviousIndex, isNil } from 'src/common/utils/misc';
+import { getNextIndex, getPreviousIndex, isNil, extractTelegramPubName } from 'src/common/utils/misc';
 import { Context, Middleware } from 'src/common/types/bot';
 import { UserService } from 'src/modules/entities/user/user.service';
 import { ChatService } from 'src/modules/entities/chat/chat.service';
@@ -103,7 +103,8 @@ export class BikecheckCommandService {
         bikecheckOrder: bikecheckIndex + 1,
         likes,
         dislikes,
-        stravaLink: user.stravaLink,
+        telegramPubLink: user.telegramPubLink,
+        telegramPubName: extractTelegramPubName(user.telegramPubLink),
         onSale: bikecheck.onSale,
       },
     );
@@ -213,7 +214,8 @@ export class BikecheckCommandService {
         bikecheckOrder: 1,
         likes,
         dislikes,
-        stravaLink: user.stravaLink,
+        telegramPubLink: user.telegramPubLink,
+        telegramPubName: extractTelegramPubName(user.telegramPubLink),
         onSale: bikecheck.onSale,
       },
     );
@@ -440,7 +442,7 @@ export class BikecheckCommandService {
     await ctx.telegram.answerCbQuery(callbackQuery.id);
   }
 
-  private async deleteStrava(ctx: Context): Promise<void> {
+  private async deleteTelegramPub(ctx: Context): Promise<void> {
     const client = getContextConnectionOrFail(ctx);
     const callbackQuery = getContextCallbackQueryOrFail(ctx);
     const data = parseCallbackData<IBikecheckCommandData>(
@@ -469,7 +471,7 @@ export class BikecheckCommandService {
       return;
     }
 
-    if (isNil(user.stravaLink)) {
+    if (isNil(user.telegramPubLink)) {
       await ctx.telegram.answerCbQuery(
         callbackQuery.id,
         'Уже удалена или еще не добавлена',
@@ -477,7 +479,7 @@ export class BikecheckCommandService {
       return;
     }
 
-    user.stravaLink = undefined;
+    user.telegramPubLink = undefined;
 
     await this.userService.updateUser(client, user);
 
@@ -535,7 +537,7 @@ export class BikecheckCommandService {
             bikecheckOrder: i + 1,
             likes,
             dislikes,
-            stravaLink: user.stravaLink,
+            telegramPubLink: user.telegramPubLink,
             onSale: bikecheck.onSale,
           },
         );
@@ -569,15 +571,15 @@ export class BikecheckCommandService {
           ),
           this.processDeleteCommand.bind(this),
         ]);
-      case CALLBACK_QUERY_COMMANDS.DELETE_STRAVA:
+      case CALLBACK_QUERY_COMMANDS.DELETE_TELEGRAM_PUB:
         return composeMiddlewares([
           this.dbMiddlewareService.getMiddleware(),
           this.preliminaryDataSaveService.getMiddleware(),
           this.privateChatsOnlyMiddlewareService.getMiddleware(),
           this.featureAnalyticsService.getMiddleware(
-            'bikecheck-command/callback-query/delete-strava',
+            'bikecheck-command/callback-query/delete-telegram-pub',
           ),
-          this.deleteStrava.bind(this),
+          this.deleteTelegramPub.bind(this),
         ]);
       case CALLBACK_QUERY_COMMANDS.TOGGLE_ON_SALE:
         return composeMiddlewares([

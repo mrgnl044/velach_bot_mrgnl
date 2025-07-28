@@ -16,20 +16,20 @@ import { TemplatesModule } from 'src/modules/telegram-bot/templates/templates.mo
 import { TemplatesService } from 'src/modules/telegram-bot/templates/templates.service';
 import { EntitiesModule } from 'src/modules/entities/entities.module';
 
-import { SetStravaCommandService } from './set-strava-command.service';
+import { SetTelegramPubCommandService } from './set-telegram-pub-command.service';
 
-describe('Test SetStravaCommandService', () => {
-  let service: SetStravaCommandService;
+describe('Test SetTelegramPubCommandService', () => {
+  let service: SetTelegramPubCommandService;
   let templatesService: TemplatesService;
   let connection: PoolClient;
 
   beforeEach(async () => {
     const module = await getTestingModule(
-      [SetStravaCommandService],
+      [SetTelegramPubCommandService],
       [MiddlewaresModule, TemplatesModule, EntitiesModule],
     );
 
-    service = module.get(SetStravaCommandService);
+    service = module.get(SetTelegramPubCommandService);
     templatesService = module.get(TemplatesService);
     connection = await getTestConnection();
     await connection.query('START TRANSACTION');
@@ -45,10 +45,10 @@ describe('Test SetStravaCommandService', () => {
   });
 
   test('Service instantiated', async () => {
-    expect(service).toBeInstanceOf(SetStravaCommandService);
+    expect(service).toBeInstanceOf(SetTelegramPubCommandService);
   });
 
-  test('Sets strava link for numeric athlete id', async () => {
+  test('Sets telegram pub link for valid channel', async () => {
     const doneText = await templatesService.renderTemplate(
       join(__dirname, 'templates', 'done.mustache'),
       {},
@@ -71,7 +71,7 @@ describe('Test SetStravaCommandService', () => {
             type: 'private',
             first_name: 'Billy',
           },
-          text: '/setstrava',
+          text: '/settelegrampub',
           date: Date.now(),
           reply_to_message: {
             message_id: 1,
@@ -85,7 +85,7 @@ describe('Test SetStravaCommandService', () => {
               type: 'private',
               first_name: 'Billy',
             },
-            text: 'https://www.strava.com/athletes/123456',
+            text: 'https://t.me/my_channel',
             date: Date.now(),
             reply_to_message: undefined,
           },
@@ -110,7 +110,7 @@ describe('Test SetStravaCommandService', () => {
     });
   });
 
-  test('Sets strava link for alhpanumeric athlete id', async () => {
+  test('Sets telegram pub link for alphanumeric channel', async () => {
     const doneText = await templatesService.renderTemplate(
       join(__dirname, 'templates', 'done.mustache'),
       {},
@@ -133,7 +133,7 @@ describe('Test SetStravaCommandService', () => {
             type: 'private',
             first_name: 'Billy',
           },
-          text: '/setstrava',
+          text: '/settelegrampub',
           date: Date.now(),
           reply_to_message: {
             message_id: 1,
@@ -147,7 +147,7 @@ describe('Test SetStravaCommandService', () => {
               type: 'private',
               first_name: 'Billy',
             },
-            text: 'https://www.strava.com/athletes/123456test',
+            text: 'https://t.me/my_channel_test',
             date: Date.now(),
             reply_to_message: undefined,
           },
@@ -172,7 +172,7 @@ describe('Test SetStravaCommandService', () => {
     });
   });
 
-  test('Sets strava link for alhpanumeric athlete id with underscores and dashes', async () => {
+  test('Sets telegram pub link for channel with underscores and dashes', async () => {
     const doneText = await templatesService.renderTemplate(
       join(__dirname, 'templates', 'done.mustache'),
       {},
@@ -195,7 +195,7 @@ describe('Test SetStravaCommandService', () => {
             type: 'private',
             first_name: 'Billy',
           },
-          text: '/setstrava',
+          text: '/settelegrampub',
           date: Date.now(),
           reply_to_message: {
             message_id: 1,
@@ -209,7 +209,7 @@ describe('Test SetStravaCommandService', () => {
               type: 'private',
               first_name: 'Billy',
             },
-            text: 'https://www.strava.com/athletes/123456-test_test',
+            text: 'https://t.me/my-channel_test',
             date: Date.now(),
             reply_to_message: undefined,
           },
@@ -257,7 +257,7 @@ describe('Test SetStravaCommandService', () => {
             type: 'private',
             first_name: 'Billy',
           },
-          text: '/setstrava',
+          text: '/settelegrampub',
           date: Date.now(),
           reply_to_message: {
             message_id: 1,
@@ -319,7 +319,7 @@ describe('Test SetStravaCommandService', () => {
             type: 'private',
             first_name: 'Billy',
           },
-          text: '/setstrava',
+          text: '/settelegrampub',
           date: Date.now(),
         },
       },
@@ -365,7 +365,7 @@ describe('Test SetStravaCommandService', () => {
             type: 'private',
             first_name: 'Billy',
           },
-          text: '/setstrava',
+          text: '/settelegrampub',
           date: Date.now(),
           reply_to_message: {
             message_id: 1,
@@ -379,7 +379,7 @@ describe('Test SetStravaCommandService', () => {
               type: 'private',
               first_name: 'Billy',
             },
-            text: 'https://www.strava.com/athletes/123456',
+            text: 'https://t.me/my_channel
             date: Date.now(),
             reply_to_message: undefined,
           },

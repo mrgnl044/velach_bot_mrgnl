@@ -17,7 +17,7 @@ CREATE TABLE "User" (
   "firstName" varchar(255) NULL,
   "lastName" varchar(255) NULL,
   username varchar(255) NULL,
-  "stravaLink" text NULL,
+  "telegramPubLink" text NULL,
   CONSTRAINT "User_pkey" PRIMARY KEY (id)
 );
 

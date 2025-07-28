@@ -33,7 +33,7 @@ export async function seedTestDatabase(client: PoolClient): Promise<void> {
     firstName: 'Billy',
     lastName: 'Herrington',
     isBot: false,
-    stravaLink: undefined,
+    telegramPubLink: undefined,
     username: 'billy',
   });
 
@@ -42,7 +42,7 @@ export async function seedTestDatabase(client: PoolClient): Promise<void> {
     firstName: 'Van',
     lastName: 'Darkholme',
     isBot: false,
-    stravaLink: 'https://strava.com/athletes/314159265',
+    telegramPubLink: 'https://t.me/my_channel',
     username: 'van',
   });
 
@@ -51,7 +51,7 @@ export async function seedTestDatabase(client: PoolClient): Promise<void> {
     firstName: 'Mark',
     lastName: 'Wolff',
     isBot: false,
-    stravaLink: 'https://strava.com/athletes/314159265',
+    telegramPubLink: 'https://t.me/my_channel',
     username: 'mark',
   });
 
@@ -60,7 +60,7 @@ export async function seedTestDatabase(client: PoolClient): Promise<void> {
     firstName: 'Steve',
     lastName: 'Rambo',
     isBot: false,
-    stravaLink: 'https://strava.com/athletes/314159265',
+    telegramPubLink: 'https://t.me/my_channel',
     username: 'steve',
   });
 
